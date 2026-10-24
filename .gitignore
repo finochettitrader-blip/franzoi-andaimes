@@ -1,0 +1,17 @@
+node_modules/
+.netlify/
+.openai/
+.sites-runtime/
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+*.log
+*.zip
+/build/
+/netlify-dist/
+/netlify-preview/
+/deployment/*validation*.json
+
+# dist contém fontes editáveis: manter CSS, JavaScript e assets no Git.

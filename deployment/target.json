@@ -1,0 +1,13 @@
+{
+  "provider": "netlify",
+  "plan": "Free",
+  "siteName": "franzoi-andaimes",
+  "siteId": "13d6e75c-2e94-48de-9591-6468e85249ff",
+  "primaryOrigin": "https://andaimesfranzoi.com",
+  "alternateOrigin": "https://www.andaimesfranzoi.com",
+  "dashboardUrl": "https://app.netlify.com/projects/franzoi-andaimes",
+  "repositoryUrl": "https://github.com/finochettitrader-blip/franzoi-andaimes",
+  "productionBranch": "main",
+  "productionDirectory": "netlify-dist",
+  "previewDirectory": "netlify-preview"
+}

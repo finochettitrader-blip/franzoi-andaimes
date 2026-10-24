@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Franzoi Andaimes — prévia mobile da Versão 1</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#e9e9e5;color:#171717;font:15px/1.5 Arial,Helvetica,sans-serif}header{display:flex;gap:20px;align-items:center;justify-content:space-between;padding:18px 28px;background:#fff;border-bottom:1px solid #ccc}h1{font-size:18px;margin:0}p{margin:3px 0 0;color:#555;font-size:13px}.controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap}select,a{font:inherit;color:inherit;min-height:44px;padding:10px 12px;background:#fff;border:1px solid #aaa;border-radius:3px}a{text-decoration:none}a:hover,select:focus-visible{border-color:#000}main{padding:24px 12px 40px}.phone{width:390px;max-width:100%;margin:auto;border:1px solid #bbb;border-radius:15px;overflow:hidden;box-shadow:0 10px 35px #00000010;background:white}iframe{display:block;border:0;width:100%;height:844px;max-height:calc(100dvh - 155px);min-height:480px}@media(max-width:640px){header{padding:14px 16px;align-items:flex-start;flex-direction:column;gap:12px}main{padding:14px 8px}.phone{border-radius:8px}iframe{max-height:none;height:80dvh}}
+  </style>
+</head>
+<body>
+  <header><div><h1>Franzoi Andaimes · Versão 1</h1><p>Prévia mobile para validação. Role dentro da tela para explorar.</p></div><div class="controls"><label for="width">Largura</label><select id="width"><option value="320">320 px</option><option value="375">375 px</option><option value="390" selected>390 px</option><option value="430">430 px</option></select><a href="index.html" target="_blank" rel="noopener">Abrir em largura livre ↗</a></div></header>
+  <main><div class="phone"><iframe src="index.html" title="Franzoi Andaimes — visualização mobile"></iframe></div></main>
+  <script>document.querySelector('#width').addEventListener('change',event=>{document.querySelector('.phone').style.width=event.target.value+'px';});</script>
+</body>
+</html>

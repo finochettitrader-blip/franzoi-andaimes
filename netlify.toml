@@ -1,0 +1,14 @@
+# Hospedagem no Netlify Free autorizada pelo proprietário.
+# Regras e cabeçalhos são gerados dentro do diretório publicado,
+# para funcionar igualmente por upload manual e pelo Netlify CLI.
+[build]
+  command = "node scripts/build-netlify.mjs"
+  publish = "netlify-dist"
+
+[context.deploy-preview]
+  command = "node scripts/build-netlify.mjs --preview"
+  publish = "netlify-preview"
+
+[context.branch-deploy]
+  command = "node scripts/build-netlify.mjs --preview"
+  publish = "netlify-preview"

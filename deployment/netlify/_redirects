@@ -1,0 +1,4 @@
+# Preserva caminhos e parâmetros; aplica-se somente aos domínios oficiais.
+http://www.andaimesfranzoi.com/* https://andaimesfranzoi.com/:splat 301!
+https://www.andaimesfranzoi.com/* https://andaimesfranzoi.com/:splat 301!
+http://andaimesfranzoi.com/* https://andaimesfranzoi.com/:splat 301!

@@ -1,0 +1,131 @@
+{
+  "name": "Franzoi Andaimes",
+  "tagline": "Você sempre bem equipado!",
+  "whatsapp": "5547992672766",
+  "instagram": "https://www.instagram.com/franzoi_andaimes/",
+  "instagramHandle": "@franzoi_andaimes",
+  "domain": "https://andaimesfranzoi.com",
+  "region": "Brusque, Camboriú e região",
+  "address": "",
+  "directionsUrl": "",
+  "email": "",
+  "hours": "",
+  "preview": true,
+  "confirmed": { "instagram": false, "whatsapp": false, "region": false, "equipment": false },
+  "seo": {
+    "title": "Franzoi Andaimes | Locação de andaimes e equipamentos",
+    "description": "Conheça a Franzoi Andaimes e consulte opções de locação de andaimes e equipamentos para sua obra em Brusque, Camboriú e região."
+  },
+  "images": {
+    "brand": "assets/franzoi-andaimes-original.jpg",
+    "brandAlt": "Marca original Franzói Andaimes, com trabalhador em uma estrutura de andaime.",
+    "illustration": {
+      "src": "assets/franzoi-circular-referencia.jpg",
+      "alt": "Ilustração da Franzoi Andaimes: trabalhador em um círculo laranja.",
+      "width": 1079,
+      "height": 1109
+    },
+    "heroPhoto": null,
+    "social": "assets/franzoi-compartilhamento-circular-v2.png",
+    "socialWidth": 1254,
+    "socialHeight": 1254,
+    "socialAlt": "Franzoi Andaimes: trabalhador no andaime dentro de um círculo laranja."
+  },
+  "navigation": [
+    { "label": "Início", "target": "inicio" },
+    { "label": "Equipamentos", "target": "equipamentos" },
+    { "label": "Sobre", "target": "sobre" },
+    { "label": "Contato", "target": "contato" }
+  ],
+  "messages": {
+    "general": "Olá! Acessei o site da Franzoi Andaimes e gostaria de informações e orçamento para locação de equipamentos.",
+    "equipment": "Olá! Acessei o site da Franzoi Andaimes e gostaria de consultar a disponibilidade de {equipment} para locação."
+  },
+  "labels": {
+    "quote": "Solicitar orçamento",
+    "instagramContact": "Falar pelo Instagram",
+    "equipment": "Conhecer equipamentos",
+    "availability": "Consultar disponibilidade",
+    "whatsapp": "Falar no WhatsApp",
+    "instagram": "Visitar Instagram",
+    "skip": "Pular para o conteúdo",
+    "menuOpen": "Abrir menu",
+    "menuClose": "Fechar menu",
+    "backToTop": "Voltar ao início"
+  },
+  "hero": {
+    "eyebrow": "Locação para construção civil",
+    "title": "VOCÊ SEMPRE\nBEM\nEQUIPADO!",
+    "description": "Locação de andaimes e equipamentos para construção civil em {region}.",
+    "artLabel": "Franzoi Andaimes",
+    "artCaption": "Andaimes & equipamentos",
+    "bottomLabel": "Sua obra começa com a escolha certa.",
+    "bottomLink": "Explore os equipamentos"
+  },
+  "equipmentSection": {
+    "eyebrow": "01 / Equipamentos",
+    "mobileEyebrow": "Nossas soluções",
+    "mobileCta": "Consultar equipamentos",
+    "title": "EQUIPAMENTOS\nPARA SUA OBRA.",
+    "description": "Conheça algumas das opções divulgadas pela Franzoi Andaimes e consulte nossa equipe sobre disponibilidade e condições de locação.",
+    "mobileDescription": "Consulte opções e disponibilidade para a sua obra."
+  },
+  "equipment": [
+    {
+      "id": "andaimes-tubulares",
+      "name": "Andaimes tubulares",
+      "mobileName": "Andaimes tubulares",
+      "mobileOrder": 1,
+      "mobileDescription": "Andaimes tubulares para a sua obra.",
+      "description": "Consulte os modelos de andaimes disponíveis para locação e conte o que sua obra precisa.",
+      "image": null,
+      "enabled": true
+    },
+    {
+      "id": "betoneira",
+      "name": "Betoneira",
+      "mobileOrder": 3,
+      "mobileDescription": "Confira as opções de betoneira para locação.",
+      "description": "Fale com a equipe para conhecer as opções de betoneira e as condições de locação.",
+      "image": null,
+      "enabled": true
+    },
+    {
+      "id": "guincho-de-coluna",
+      "name": "Guincho de coluna",
+      "mobileOrder": 2,
+      "mobileDescription": "Consulte opções e disponibilidade para locação.",
+      "description": "Consulte a disponibilidade de guincho de coluna para a próxima etapa da sua obra.",
+      "image": null,
+      "enabled": true
+    },
+    {
+      "id": "venda-de-andaimes",
+      "name": "Venda de andaimes",
+      "description": "Converse com a equipe sobre as opções de andaimes para venda.",
+      "message": "Olá! Acessei o site da Franzoi Andaimes e gostaria de consultar as opções de andaimes para venda.",
+      "image": null,
+      "enabled": false
+    }
+  ],
+  "about": {
+    "eyebrow": "02 / Sobre a Franzoi",
+    "title": "CONHEÇA A\nFRANZOI ANDAIMES.",
+    "description": "A Franzoi Andaimes trabalha com locação de andaimes e equipamentos para construção civil, atendendo {region}. Conheça nossas opções e converse com a equipe sobre o que você precisa para sua obra.",
+    "caption": "Você sempre bem equipado!"
+  },
+  "gallery": [],
+  "galleryTitle": "CONHEÇA NOSSOS EQUIPAMENTOS.",
+  "social": {
+    "title": "ACOMPANHE A FRANZOI ANDAIMES.",
+    "description": "Veja nossos equipamentos e novidades no Instagram."
+  },
+  "contact": {
+    "eyebrow": "03 / Vamos conversar",
+    "title": "PRECISA DE EQUIPAMENTOS\nPARA SUA OBRA?",
+    "description": "Fale com a Franzoi Andaimes e consulte as opções disponíveis para locação.",
+    "phoneLabel": "WhatsApp",
+    "regionLabel": "Região de atendimento"
+  },
+  "footer": { "rights": "Todos os direitos reservados." }
+}

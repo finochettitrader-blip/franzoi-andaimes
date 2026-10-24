@@ -1,0 +1,17 @@
+{
+  "name": "franzoi-andaimes",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:production": "node scripts/build.mjs --production",
+    "build:wix-preview": "node scripts/build.mjs --wix-preview",
+    "build:netlify": "node scripts/build-netlify.mjs",
+    "build:netlify-preview": "node scripts/build-netlify.mjs --preview",
+    "preview": "node scripts/serve.mjs",
+    "check": "node scripts/check.mjs",
+    "check:production": "node scripts/check-production.mjs"
+  },
+  "engines": { "node": ">=20" }
+}
