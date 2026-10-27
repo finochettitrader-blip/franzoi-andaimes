@@ -9,7 +9,8 @@ const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=
 http.createServer(async (req, res) => {
   try {
     const requestPath = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
-    const target = path.resolve(root, '.' + (requestPath === '/' ? '/index.html' : requestPath));
+    if (requestPath === '/equipamentos') { res.writeHead(301, {Location:'/equipamentos/'}).end(); return; }
+    const target = path.resolve(root, '.' + (requestPath.endsWith('/') ? requestPath + 'index.html' : requestPath));
     const relative = path.relative(root, target);
     if (relative.startsWith('..') || path.isAbsolute(relative) || relative.split(path.sep).some(part => part.startsWith('.'))) {
       res.writeHead(403).end('Acesso negado'); return;

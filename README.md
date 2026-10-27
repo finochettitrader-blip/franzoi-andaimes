@@ -61,3 +61,11 @@ Para reverter, use uma publicação anterior válida na Netlify ou reverta o com
 ## Conteúdo aprovado
 
 Equipamentos: Andaimes tubulares, Betoneira e Guincho de coluna. No mobile, os cards ficam na ordem Andaimes, Guincho, Betoneira; no desktop, Andaimes, Betoneira, Guincho. A imagem de compartilhamento circular tem transparência externa. Venda e galeria permanecem ocultas enquanto desabilitadas no conteúdo.
+
+## Portfólio em página própria
+
+A página inicial mantém uma chamada compacta para `/equipamentos/`. O gerador produz `equipamentos/index.html` nos pacotes local, de produção e Netlify, com os mesmos cadastros de `src/content.json`, agrupados por `equipmentGroups`. O sitemap inclui as duas páginas.
+
+Prévia: http://127.0.0.1:4173/equipamentos/ (ou a porta definida em `PORT`). O servidor local aceita a rota com barra final e redireciona `/equipamentos` para `/equipamentos/`.
+
+Em ambientes que bloqueiam subprocessos, execute `node scripts/check.mjs --skip-syntax` e rode `node --check` separadamente nos arquivos JavaScript.

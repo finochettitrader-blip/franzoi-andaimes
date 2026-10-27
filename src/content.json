@@ -11,7 +11,12 @@
   "email": "",
   "hours": "",
   "preview": true,
-  "confirmed": { "instagram": false, "whatsapp": false, "region": false, "equipment": false },
+  "confirmed": {
+    "instagram": false,
+    "whatsapp": false,
+    "region": false,
+    "equipment": false
+  },
   "seo": {
     "title": "Franzoi Andaimes | Locação de andaimes e equipamentos",
     "description": "Conheça a Franzoi Andaimes e consulte opções de locação de andaimes e equipamentos para sua obra em Brusque, Camboriú e região."
@@ -32,10 +37,22 @@
     "socialAlt": "Franzoi Andaimes: trabalhador no andaime dentro de um círculo laranja."
   },
   "navigation": [
-    { "label": "Início", "target": "inicio" },
-    { "label": "Equipamentos", "target": "equipamentos" },
-    { "label": "Sobre", "target": "sobre" },
-    { "label": "Contato", "target": "contato" }
+    {
+      "label": "Início",
+      "target": "inicio"
+    },
+    {
+      "label": "Equipamentos",
+      "target": "equipamentos"
+    },
+    {
+      "label": "Sobre",
+      "target": "sobre"
+    },
+    {
+      "label": "Contato",
+      "target": "contato"
+    }
   ],
   "messages": {
     "general": "Olá! Acessei o site da Franzoi Andaimes e gostaria de informações e orçamento para locação de equipamentos.",
@@ -78,25 +95,178 @@
       "mobileOrder": 1,
       "mobileDescription": "Andaimes tubulares para a sua obra.",
       "description": "Consulte os modelos de andaimes disponíveis para locação e conte o que sua obra precisa.",
-      "image": null,
-      "enabled": true
+      "image": {
+        "src": "assets/equipment-preview/01.png",
+        "alt": "Andaimes tubulares",
+        "width": 118,
+        "height": 160
+      },
+      "enabled": true,
+      "category": "andaimes-acessorios"
     },
     {
       "id": "betoneira",
       "name": "Betoneira",
-      "mobileOrder": 3,
+      "mobileOrder": 8,
       "mobileDescription": "Confira as opções de betoneira para locação.",
       "description": "Fale com a equipe para conhecer as opções de betoneira e as condições de locação.",
-      "image": null,
-      "enabled": true
+      "image": {
+        "src": "assets/equipment-preview/08.png",
+        "alt": "Betoneira",
+        "width": 192,
+        "height": 168
+      },
+      "enabled": true,
+      "category": "maquinas-equipamentos"
     },
     {
       "id": "guincho-de-coluna",
       "name": "Guincho de coluna",
-      "mobileOrder": 2,
+      "mobileOrder": 9,
       "mobileDescription": "Consulte opções e disponibilidade para locação.",
       "description": "Consulte a disponibilidade de guincho de coluna para a próxima etapa da sua obra.",
-      "image": null,
+      "image": {
+        "src": "assets/equipment-preview/09.png",
+        "alt": "Guincho de coluna",
+        "width": 213,
+        "height": 201
+      },
+      "enabled": true,
+      "category": "maquinas-equipamentos"
+    },
+    {
+      "id": "pedestal-para-guincho-de-coluna",
+      "name": "Pedestal para guincho de coluna",
+      "mobileOrder": 10,
+      "description": "Estrutura de sustentação para instalação do guincho de coluna em obras.",
+      "category": "maquinas-equipamentos",
+      "message": "Olá! Acessei o site da Franzoi Andaimes e gostaria de consultar a disponibilidade de Pedestal para guincho de coluna para locação.",
+      "image": {
+        "src": "assets/equipment-preview/10.png",
+        "alt": "Pedestal para guincho de coluna",
+        "width": 187,
+        "height": 166
+      },
+      "enabled": true
+    },
+    {
+      "id": "escora-metalica",
+      "name": "Escora metálica",
+      "mobileOrder": 6,
+      "description": "Consulte opções de escora metálica e condições de locação para sua obra.",
+      "category": "escoramento",
+      "message": "Olá! Acessei o site da Franzoi Andaimes e gostaria de consultar a disponibilidade de Escora metálica para locação.",
+      "image": {
+        "src": "assets/equipment-preview/escora-metalica-aprovada.jpg",
+        "alt": "Escora metálica",
+        "width": 1024,
+        "height": 1024
+      },
+      "enabled": true
+    },
+    {
+      "id": "aprumador-de-pilar",
+      "name": "Aprumador de pilar",
+      "mobileOrder": 7,
+      "description": "Fale com nossa equipe sobre a locação de aprumador de pilar para sua obra.",
+      "category": "escoramento",
+      "message": "Olá! Acessei o site da Franzoi Andaimes e gostaria de consultar a disponibilidade de Aprumador de pilar para locação.",
+      "image": {
+        "src": "assets/equipment-preview/07.png",
+        "alt": "Aprumador de pilar",
+        "width": 228,
+        "height": 196
+      },
+      "enabled": true
+    },
+    {
+      "id": "bomba-de-agua-submersa",
+      "name": "Bomba de água submersa",
+      "mobileOrder": 11,
+      "description": "Consulte a disponibilidade de bomba de água submersa para locação.",
+      "category": "maquinas-equipamentos",
+      "message": "Olá! Acessei o site da Franzoi Andaimes e gostaria de consultar a disponibilidade de Bomba de água submersa para locação.",
+      "image": {
+        "src": "assets/equipment-preview/11.png",
+        "alt": "Bomba de água submersa",
+        "width": 148,
+        "height": 164
+      },
+      "enabled": true
+    },
+    {
+      "id": "tubo-roll-48-mm",
+      "name": "Tubo Roll 48 mm",
+      "mobileOrder": 2,
+      "description": "Consulte a locação de Tubo Roll 48 mm e as opções para sua obra.",
+      "category": "andaimes-acessorios",
+      "message": "Olá! Acessei o site da Franzoi Andaimes e gostaria de consultar a disponibilidade de Tubo Roll 48 mm para locação.",
+      "image": {
+        "src": "assets/equipment-preview/02.png",
+        "alt": "Tubo Roll 48 mm",
+        "width": 229,
+        "height": 153
+      },
+      "enabled": true
+    },
+    {
+      "id": "abracadeira-fixa-tubo-48-mm",
+      "name": "Abraçadeira fixa para tubo 48 mm",
+      "mobileOrder": 3,
+      "description": "Consulte a disponibilidade de abraçadeira fixa para tubo 48 mm.",
+      "category": "andaimes-acessorios",
+      "message": "Olá! Acessei o site da Franzoi Andaimes e gostaria de consultar a disponibilidade de Abraçadeira fixa para tubo 48 mm para locação.",
+      "image": {
+        "src": "assets/equipment-preview/03.png",
+        "alt": "Abraçadeira fixa para tubo 48 mm",
+        "width": 154,
+        "height": 150
+      },
+      "enabled": true
+    },
+    {
+      "id": "abracadeira-giratoria-tubo-48-mm",
+      "name": "Abraçadeira giratória para tubo 48 mm",
+      "mobileOrder": 4,
+      "description": "Fale com nossa equipe sobre abraçadeira giratória para tubo 48 mm.",
+      "category": "andaimes-acessorios",
+      "message": "Olá! Acessei o site da Franzoi Andaimes e gostaria de consultar a disponibilidade de Abraçadeira giratória para tubo 48 mm para locação.",
+      "image": {
+        "src": "assets/equipment-preview/04.png",
+        "alt": "Abraçadeira giratória para tubo 48 mm",
+        "width": 209,
+        "height": 146
+      },
+      "enabled": true
+    },
+    {
+      "id": "luva-uniao-tubo-48-mm",
+      "name": "Luva de união para tubo 48 mm",
+      "mobileOrder": 5,
+      "description": "Consulte opções de luva de união para tubo 48 mm e condições de locação.",
+      "category": "andaimes-acessorios",
+      "message": "Olá! Acessei o site da Franzoi Andaimes e gostaria de consultar a disponibilidade de Luva de união para tubo 48 mm para locação.",
+      "image": {
+        "src": "assets/equipment-preview/05.png",
+        "alt": "Luva de união para tubo 48 mm",
+        "width": 100,
+        "height": 147
+      },
+      "enabled": true
+    },
+    {
+      "id": "linha-de-vida-postes-cabos",
+      "name": "Linha de vida com postes e cabos",
+      "mobileOrder": 12,
+      "description": "Consulte a disponibilidade de linha de vida com postes e cabos para sua obra.",
+      "category": "seguranca-altura",
+      "message": "Olá! Acessei o site da Franzoi Andaimes e gostaria de consultar a disponibilidade de Linha de vida com postes e cabos para locação.",
+      "image": {
+        "src": "assets/equipment-preview/12.png",
+        "alt": "Linha de vida com postes e cabos",
+        "width": 206,
+        "height": 165
+      },
       "enabled": true
     },
     {
@@ -105,7 +275,8 @@
       "description": "Converse com a equipe sobre as opções de andaimes para venda.",
       "message": "Olá! Acessei o site da Franzoi Andaimes e gostaria de consultar as opções de andaimes para venda.",
       "image": null,
-      "enabled": false
+      "enabled": false,
+      "category": "maquinas-equipamentos"
     }
   ],
   "about": {
@@ -127,5 +298,36 @@
     "phoneLabel": "WhatsApp",
     "regionLabel": "Região de atendimento"
   },
-  "footer": { "rights": "Todos os direitos reservados." }
+  "footer": {
+    "rights": "Todos os direitos reservados."
+  },
+  "equipmentGroups": [
+    {
+      "id": "andaimes-acessorios",
+      "name": "Andaimes e acessórios"
+    },
+    {
+      "id": "escoramento",
+      "name": "Escoramento"
+    },
+    {
+      "id": "maquinas-equipamentos",
+      "name": "Máquinas e equipamentos"
+    },
+    {
+      "id": "seguranca-altura",
+      "name": "Segurança em altura"
+    }
+  ],
+  "equipmentTeaser": {
+    "title": "Nossos equipamentos",
+    "description": "Conheça nossas opções de andaimes, escoramento, máquinas e equipamentos para sua obra.",
+    "button": "Ver todos os equipamentos"
+  },
+  "equipmentPage": {
+    "title": "Equipamentos | Franzoi Andaimes",
+    "description": "Conheça os equipamentos da Franzoi Andaimes e consulte a disponibilidade para locação em Brusque, Camboriú e região.",
+    "heading": "Nossos equipamentos",
+    "back": "Voltar à página inicial"
+  }
 }

@@ -9,7 +9,7 @@ const source = path.join(root, preview ? 'dist' : 'build');
 const output = path.join(root, preview ? 'netlify-preview' : 'netlify-dist');
 execFileSync(process.execPath, [path.join(root,'scripts/build.mjs'), ...(preview ? [] : ['--production'])], {stdio:'inherit'});
 await mkdir(output,{recursive:true});
-for (const name of ['assets','index.html','styles.css','app.js','favicon.ico','robots.txt','sitemap.xml']) {
+for (const name of ['assets','equipamentos','index.html','styles.css','app.js','favicon.ico','robots.txt','sitemap.xml']) {
   await cp(path.join(source,name), path.join(output,name),{recursive:true});
 }
 await cp(path.join(root,'deployment/netlify/_redirects'),path.join(output,'_redirects'));

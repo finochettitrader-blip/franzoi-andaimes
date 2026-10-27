@@ -1,7 +1,6 @@
 document.documentElement.classList.add('js-enabled');
 // A ordem do DOM acompanha a leitura e o teclado em cada largura, sem duplicar cards.
-const equipmentList = document.querySelector('.equipment-list');
-if (equipmentList) {
+document.querySelectorAll('.equipment-list').forEach(equipmentList => {
   const desktopRows = [...equipmentList.querySelectorAll('.equipment-row')];
   const mobileRows = [...desktopRows].sort((a, b) => Number(a.dataset.mobileOrder) - Number(b.dataset.mobileOrder));
   const mobileLayout = matchMedia('(max-width: 640px)');
@@ -17,7 +16,7 @@ if (equipmentList) {
   };
   mobileLayout.addEventListener('change', orderEquipment);
   orderEquipment();
-}
+});
 const toggle = document.querySelector('.menu-toggle');
 const menu = document.querySelector('#menu-principal');
 if (toggle && menu) {
@@ -98,5 +97,5 @@ if ('IntersectionObserver' in window) {
       else link.removeAttribute('aria-current');
     });
   }, { rootMargin: '-100px 0px -50% 0px', threshold: [0, .1, .3] });
-  links.forEach(link => { const section = document.querySelector(link.hash); if (section) observer.observe(section); });
+  links.forEach(link => { const section = link.hash ? document.getElementById(link.hash.slice(1)) : null; if (section) observer.observe(section); });
 }

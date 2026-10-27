@@ -35,10 +35,19 @@ const responsiveText = (desktop, mobile) => mobile ? `<span class="desktop-copy"
 // A primeira quebra vale em todas as telas; as seguintes só no mobile.
 const heroTitle = text => text.split('\n').map((line, index) => `${index === 0 ? '' : index === 1 ? '<br>' : ' <br class="hero-mobile-break">'}<span class="hero-title-line">${escape(line)}</span>`).join('');
 const external = 'target="_blank" rel="noopener noreferrer"';
-const brand = c => `<span class="brand-window"><span class="brand-name-crop"><img src="${escape(c.images.brand)}" width="500" height="500" alt="${escape(c.name)}"></span></span>`;
-const illustration = (c, lazy = false, mobileHero = false) => `<div class="worker-window">${mobileHero ? `<picture><source media="(max-width: 640px)" srcset="${escape(c.images.brand)}" width="500" height="500">` : ''}<img src="${escape(c.images.illustration.src)}" width="${c.images.illustration.width}" height="${c.images.illustration.height}" alt="${escape(mobileHero ? c.images.brandAlt : c.images.illustration.alt)}" ${lazy ? 'loading="lazy" decoding="async"' : 'fetchpriority="high"'}>${mobileHero ? '</picture>' : ''}</div>`;
+const brand = c => `<span class="catalog-brand"><img src="assets/franzoi-logo-horizontal-aprovada.png" width="1938" height="811" alt="${escape(c.name)}"></span>`;
+const illustration = (c, lazy = false) => `<div class="approved-brand-art"><img src="assets/franzoi-logo-horizontal-aprovada.png" width="1938" height="811" alt="${escape(c.name)}" ${lazy ? 'loading="lazy" decoding="async"' : 'fetchpriority="high"'}></div>`;
 
-export function render(c, { socialExists = false, year = new Date().getFullYear(), publicationAuthorized = false } = {}) {
+
+export function render(c, { socialExists = false, year = new Date().getFullYear(), publicationAuthorized = false, page = 'home', category = 'andaimes-acessorios' } = {}) {
+  const portfolio = page === 'equipment';
+  const categoryPath = id => id === 'andaimes-acessorios' ? 'equipamentos/' : `equipamentos/${id}/`;
+  const selectedGroup = c.equipmentGroups.find(group => group.id === category);
+  if (portfolio && category !== 'todos' && !selectedGroup) throw new Error('Categoria desconhecida');
+  const pagePath = portfolio ? categoryPath(category) : '';
+  const pageTitle = portfolio ? `${selectedGroup?.name || 'Todos os equipamentos'} | ${c.name}` : c.seo.title;
+  const pageDescription = portfolio ? c.equipmentPage.description : c.seo.description;
+  const homeLink = target => portfolio ? '/#' + target : '#' + target;
   const hasPhone = validPhone(c.whatsapp);
   if (c.whatsapp && !hasPhone) throw new Error('WhatsApp deve conter de 8 a 15 dígitos em formato internacional, sem sinal de +.');
   if (!c.preview && (!c.domain || (!publicationAuthorized && Object.values(c.confirmed).some(value => value !== true)))) throw new Error('Publicação bloqueada: configure o domínio real e use o build de produção somente com autorização do proprietário.');
@@ -50,13 +59,18 @@ export function render(c, { socialExists = false, year = new Date().getFullYear(
   const inject = value => escape((c.region ? value : value.replace(', atendendo {region}', '').replace(' em {region}', '')).replaceAll('{region}', c.region));
   const navItems = [...c.navigation];
   if (c.gallery.length) navItems.splice(navItems.length - 1, 0, { label: 'Galeria', target: 'galeria' });
-  const nav = navItems.map(item => `<a href="#${escape(item.target)}">${escape(item.label)}</a>`).join('');
-  const equipments = c.equipment.filter(item => item.enabled).map((item, i) => `<article class="equipment-row" id="${escape(item.id)}" data-mobile-order="${escape(item.mobileOrder || i + 1)}">
-    ${item.image ? `<img class="equipment-photo" src="${escape(item.image.src)}" alt="${escape(item.image.alt)}" width="${item.image.width}" height="${item.image.height}" loading="lazy" decoding="async">` : `<div class="equipment-number" aria-hidden="true">${String(i + 1).padStart(2, '0')}<span></span></div>`}
-    ${item.image ? '' : equipmentSymbol(item.id)}
-    <div class="equipment-copy"><h3>${responsiveText(item.name, item.mobileName)}</h3><p>${responsiveText(item.description, item.mobileDescription)}</p></div>
-    <a class="text-link equipment-link" href="${url(contactUrl(c, item.message || c.messages.equipment.replace('{equipment}', item.name)))}" ${external} aria-label="${escape(hasPhone ? c.labels.availability : c.labels.instagramContact)}: ${escape(item.name)}"><span class="equipment-link-label">${escape(hasPhone ? c.labels.availability : c.labels.instagramContact)}</span>${icon('diagonal')}</a>
+  const nav = navItems.map(item => `<a href="${item.target === 'equipamentos' ? '/equipamentos/' : homeLink(escape(item.target))}"${portfolio && item.target === 'equipamentos' ? ' aria-current="page"' : ''}>${escape(item.label)}</a>`).join('');
+  const equipmentCards = items => items.map((item, i) => `<article class="equipment-row" id="${escape(item.id)}" data-mobile-order="${escape(item.mobileOrder || i + 1)}">
+    ${items.find(candidate => candidate.category === item.category) === item ? `<span class="equipment-category-anchor" id="${escape(item.category)}" aria-hidden="true"></span>` : ''}
+    <div class="equipment-media">${item.image && (!item.image.previewOnly || !publicationAuthorized) ? `${item.id === 'guincho-de-coluna' ? '<span class="guincho-photo-frame">' : ''}<img class="equipment-photo" src="${escape(item.image.src)}" alt="${escape(item.image.alt)}" width="${item.image.width}" height="${item.image.height}" loading="lazy" decoding="async">${item.id === 'guincho-de-coluna' ? '</span>' : ''}` : `<div class="equipment-placeholder" aria-label="Foto de ${escape(item.name)} ainda não disponível"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M4 6h4l2-2h4l2 2h4v14H4Z"/><circle cx="12" cy="12" r="4"/></svg><span>Foto em breve</span></div>`}</div>
+    <div class="equipment-copy">${item.category ? `<span class="equipment-category">${escape(c.equipmentGroups.find(group => group.id === item.category)?.name || item.category)}</span>` : ''}<h3>${responsiveText(item.name, item.mobileName)}</h3><p>${responsiveText(item.description, item.mobileDescription)}</p></div>
+
   </article>`).join('');
+  const catalogItems = c.equipmentGroups.flatMap(group => c.equipment.filter(item => item.enabled && item.category === group.id && (category === 'todos' || group.id === category)));
+  const groups = `<div class="equipment-list equipment-catalog">${equipmentCards(catalogItems)}</div>`;
+  const categoryMessage = selectedGroup ? `Olá! Acessei o site da Franzoi Andaimes e gostaria de consultar a disponibilidade de equipamentos da categoria ${selectedGroup.name}.` : 'Olá! Acessei o catálogo da Franzoi Andaimes e gostaria de consultar a disponibilidade dos equipamentos para locação.';
+  const catalogContact = `<div class="catalog-contact-bar"><a href="${url(contactUrl(c, categoryMessage))}" ${external}>${icon(hasPhone ? 'whatsapp' : 'instagram')}<span>${escape(hasPhone ? c.labels.availability : c.labels.instagramContact)}</span>${icon('diagonal')}</a></div>`;
+  const portfolioContent = `<section class="equipment portfolio section-pad" id="equipamentos"><div class="portfolio-banner"><div class="container"><a class="text-link portfolio-back" href="/">${escape(c.equipmentPage.back)} ${icon('arrow')}</a><p class="eyebrow">Franzoi Andaimes / Equipamentos</p><h1>${escape(selectedGroup?.name || c.equipmentPage.heading)}</h1><p class="portfolio-description">${escape(c.equipmentPage.description)}</p></div></div><div class="container"><nav class="equipment-group-nav" aria-label="Grupos de equipamentos"><a href="/equipamentos/todos/"${category === 'todos' ? ' aria-current="page"' : ''}>Todos os equipamentos</a>${c.equipmentGroups.map(group => `<a href="/${categoryPath(group.id)}"${category === group.id ? ' aria-current="page"' : ''}>${escape(group.name)}</a>`).join('')}</nav><div id="catalogo">${groups}</div>${catalogContact}</div></section>`;
   const photo = c.images.heroPhoto;
   const heroArt = photo ? `<figure class="hero-photo"><img src="${escape(photo.src)}" alt="${escape(photo.alt)}" width="${photo.width}" height="${photo.height}" fetchpriority="high" decoding="async"></figure>` : `<div class="hero-art" aria-label="Ilustração original da marca Franzoi Andaimes">
     <span class="art-kicker">${escape(c.hero.artLabel)}</span>
@@ -70,12 +84,12 @@ export function render(c, { socialExists = false, year = new Date().getFullYear(
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${escape(c.seo.title)}</title><meta name="description" content="${escape(c.seo.description)}">
+  <title>${escape(pageTitle)}</title><meta name="description" content="${escape(pageDescription)}">
   <meta name="robots" content="${c.preview ? 'noindex, nofollow, noarchive' : 'index, follow'}"><meta name="theme-color" content="#F88C41">
   <meta property="og:type" content="website"><meta property="og:locale" content="pt_BR"><meta property="og:site_name" content="${escape(c.name)}">
-  <meta property="og:title" content="${escape(c.seo.title)}"><meta property="og:description" content="${escape(c.seo.description)}">
-  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="${escape(c.seo.title)}"><meta name="twitter:description" content="${escape(c.seo.description)}">
-  ${domain ? `<link rel="canonical" href="${escape(domain)}"><meta property="og:url" content="${escape(domain)}">` : ''}
+  <meta property="og:title" content="${escape(pageTitle)}"><meta property="og:description" content="${escape(pageDescription)}">
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="${escape(pageTitle)}"><meta name="twitter:description" content="${escape(pageDescription)}">
+  ${domain ? `<link rel="canonical" href="${escape(domain + pagePath)}"><meta property="og:url" content="${escape(domain + pagePath)}">` : ''}
   ${domain && socialExists ? `<meta property="og:image" content="${escape(new URL(c.images.social, domain).href)}"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="${escape(c.images.socialWidth)}"><meta property="og:image:height" content="${escape(c.images.socialHeight)}"><meta property="og:image:alt" content="${escape(c.images.socialAlt)}"><meta name="twitter:image" content="${escape(new URL(c.images.social, domain).href)}"><meta name="twitter:image:alt" content="${escape(c.images.socialAlt)}">` : ''}
   <link rel="icon" type="image/x-icon" href="favicon.ico" sizes="16x16 32x32 48x48">
   <link rel="icon" type="image/png" href="assets/favicon-trabalhador-96.png" sizes="96x96">
@@ -83,28 +97,30 @@ export function render(c, { socialExists = false, year = new Date().getFullYear(
   <link rel="preload" href="assets/fonts/barlow-condensed-bold.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="styles.css"><script src="app.js" defer></script>
 </head>
-<body${hasPhone ? ' class="has-whatsapp"' : ''}>
+<body${portfolio ? ' data-page="equipment"' : ' data-page="home"'}${hasPhone ? ' class="has-whatsapp"' : ''}>
   <a class="skip-link" href="#conteudo">${escape(c.labels.skip)}</a>
   <header class="site-header"><div class="container header-inner">
-    <a class="brand" href="#inicio" aria-label="${escape(c.name)} — início">${brand(c)}</a>
+    <a class="brand" href="${homeLink('inicio')}" aria-label="${escape(c.name)} — início">${brand(c)}</a>
     <nav class="main-nav" id="menu-principal" aria-label="Navegação principal">${nav}<a class="mobile-instagram" href="${url(c.instagram)}" ${external}>Instagram ${icon('diagonal')}</a></nav>
     <div class="header-actions"><a class="instagram-icon" href="${url(c.instagram)}" ${external} aria-label="Visitar o Instagram da Franzoi Andaimes">${icon('instagram')}</a><a class="button button-dark header-quote" href="${mainContact}" ${external}>${escape(contactLabel)}${icon('diagonal')}</a></div>
     <button class="menu-toggle" aria-expanded="false" aria-controls="menu-principal" aria-label="${escape(c.labels.menuOpen)}" data-open-label="${escape(c.labels.menuOpen)}" data-close-label="${escape(c.labels.menuClose)}" hidden><span></span><span></span></button>
   </div></header>
   <main id="conteudo">
+    ${portfolio ? portfolioContent : `
     <section class="hero" id="inicio"><div class="container">
       <div class="hero-grid"><div class="hero-copy"><p class="eyebrow"><span class="label-line" aria-hidden="true"></span>${escape(c.name)}</p><h1>${heroTitle(c.hero.title)}</h1><p class="hero-description">${inject(c.hero.description)}</p><div class="hero-buttons"><a class="button button-dark" href="${mainContact}" ${external}>${escape(contactLabel)}${icon('diagonal')}</a><a class="text-link" href="#equipamentos">${escape(c.labels.equipment)}${icon('down')}</a></div></div>${heroArt}</div>
       <div class="hero-bottom"><span>${escape(c.hero.eyebrow)}</span><a href="#equipamentos">${escape(c.hero.bottomLink)}${icon('down')}</a></div>
     </div></section>
-    <section class="equipment section-pad" id="equipamentos"><div class="container"><p class="eyebrow">${responsiveText(c.equipmentSection.eyebrow, c.equipmentSection.mobileEyebrow)}</p><div class="section-intro"><h2>${lines(c.equipmentSection.title)}</h2><p>${responsiveText(c.equipmentSection.description, c.equipmentSection.mobileDescription)}</p></div><div class="equipment-list">${equipments}</div><div class="equipment-mobile-action"><a class="button button-orange" href="${mainContact}" ${external}>${escape(hasPhone ? c.equipmentSection.mobileCta : c.labels.instagramContact)}${icon('arrow')}</a></div></div></section>
+    <section class="equipment-teaser section-pad" id="equipamentos"><div class="container"><div><p class="eyebrow">01 / Equipamentos</p><h2>${escape(c.equipmentTeaser.title)}</h2><p>${escape(c.equipmentTeaser.description)}</p></div><a class="button button-dark" href="/equipamentos/">${escape(c.equipmentTeaser.button)}${icon('diagonal')}</a></div></section>
     <section class="about section-pad" id="sobre"><div class="container about-grid"><div class="about-brand">${illustration(c, true)}</div><div class="about-copy"><p class="eyebrow">${escape(c.about.eyebrow)}</p><h2>${lines(c.about.title)}</h2><p>${inject(c.about.description)}</p><div class="about-caption"><span class="label-line" aria-hidden="true"></span>${escape(c.about.caption)}</div></div></div></section>
     ${gallery}
     <section class="social-strip"><div class="container social-inner"><div class="social-heading">${icon('instagram')}<div><h2>${escape(c.social.title)}</h2><p>${escape(c.social.description)}</p></div></div><a class="button button-outline" href="${url(c.instagram)}" ${external}>${escape(c.labels.instagram)}${icon('diagonal')}</a></div></section>
+    `}
     <section class="contact section-pad" id="contato"><div class="container"><p class="eyebrow">${escape(c.contact.eyebrow)}</p><div class="contact-grid"><div><h2>${lines(c.contact.title)}</h2><p class="contact-description">${escape(c.contact.description)}</p><a class="button button-orange" href="${mainContact}" ${external}>${icon(hasPhone ? 'whatsapp' : 'instagram')}${escape(hasPhone ? c.labels.whatsapp : c.labels.instagramContact)}${icon('diagonal')}</a></div><dl class="contact-details">${hasPhone ? `<div><dt>${escape(c.contact.phoneLabel)}</dt><dd><a href="${mainContact}" ${external}>${escape(phoneDisplay)}</a></dd></div>` : ''}${c.region ? `<div><dt>${escape(c.contact.regionLabel)}</dt><dd>${escape(c.region)}</dd></div>` : ''}${optionalDetails}<div><dt>Instagram</dt><dd><a href="${url(c.instagram)}" ${external}>${escape(c.instagramHandle)}${icon('diagonal')}</a></dd></div></dl></div></div></section>
   </main>
-  <footer class="site-footer"><div class="container"><div class="footer-top"><a class="footer-brand" href="#inicio">${escape(c.name)}</a><nav aria-label="Links do rodapé">${nav}<a href="${url(c.instagram)}" ${external}>Instagram</a></nav></div><div class="footer-bottom"><p>© <span data-year>${year}</span> ${escape(c.name)}. ${escape(c.footer.rights)}</p><a href="#inicio">${escape(c.labels.backToTop)}${icon('diagonal')}</a></div></div></footer>
+  <footer class="site-footer"><div class="container"><div class="footer-top"><a class="footer-brand" href="${homeLink('inicio')}">${escape(c.name)}</a><nav aria-label="Links do rodapé">${nav}<a href="${url(c.instagram)}" ${external}>Instagram</a></nav></div><div class="footer-bottom"><p>© <span data-year>${year}</span> ${escape(c.name)}. ${escape(c.footer.rights)}</p><a href="${homeLink('inicio')}">${escape(c.labels.backToTop)}${icon('diagonal')}</a></div></div></footer>
   ${hasPhone ? `<aside class="floating-contact" aria-label="Contato rápido"><a href="${mainContact}" ${external} aria-label="Falar com a Franzoi Andaimes no WhatsApp">${icon('whatsapp')}<span>WhatsApp</span></a></aside>` : ''}
-</body></html>`;
+</body></html>`.replace(/((?:src|srcset|href)=")((?:assets\/|styles\.css|app\.js|favicon\.ico)[^" ]*)(")/g, '$1/$2$3').replace(/[ \t]+$/gm, '');
 }
 
 async function build() {
@@ -126,13 +142,19 @@ async function build() {
   }
   const socialExists = await access(path.join(out, c.images.social)).then(() => true).catch(() => false);
   await writeFile(path.join(out, 'index.html'), render(c, { socialExists, publicationAuthorized: production }));
+  await mkdir(path.join(out, 'equipamentos'), {recursive:true});
+  await writeFile(path.join(out, 'equipamentos/index.html'), render(c, {socialExists, publicationAuthorized:production, page:'equipment'}));
+  for (const category of [...c.equipmentGroups.slice(1).map(group => group.id), 'todos']) {
+    await mkdir(path.join(out, 'equipamentos', category), {recursive:true});
+    await writeFile(path.join(out, 'equipamentos', category, 'index.html'), render(c, {socialExists, publicationAuthorized:production, page:'equipment', category}));
+  }
   const sitemapPath = path.join(out, 'sitemap.xml');
   await writeFile(path.join(out, 'robots.txt'), c.preview ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nSitemap: ${new URL('sitemap.xml', c.domain).href}\n`);
   if (!production && !wixPreview) await writeFile(path.join(out, '_headers'), `/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n${c.preview ? '  X-Robots-Tag: noindex, nofollow, noarchive\n' : ''}`);
   // Wix Headless Drop rejeita arquivos sem uma extensão suportada.
   // Redirecionamentos e cabeçalhos devem ser configurados/validados no Wix.
   else await rm(path.join(out, '_headers'), { force: true });
-  if (c.domain) await writeFile(sitemapPath, `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${escape(new URL(c.domain).origin + '/')}</loc></url></urlset>`);
+  if (c.domain) await writeFile(sitemapPath, `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${escape(new URL(c.domain).origin + '/')}</loc></url><url><loc>${escape(new URL('equipamentos/', c.domain).href)}</loc></url>${[...c.equipmentGroups.slice(1).map(group => group.id), 'todos'].map(id => `<url><loc>${escape(new URL('equipamentos/' + id + '/', c.domain).href)}</loc></url>`).join('')}</urlset>`);
   else await rm(sitemapPath, { force: true });
   console.log(`Site gerado em ${outputName}/. Modo: ${c.preview ? 'prévia sem indexação' : 'produção autorizada, aguardando publicação'}. WhatsApp: ${validPhone(c.whatsapp) ? 'configurado' : 'alternativa Instagram'}.`);
 }
