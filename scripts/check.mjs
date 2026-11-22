@@ -63,6 +63,14 @@ for (const [route, markup] of pages) {
   assert(!card.includes('Foto em breve'));
  }
 }
+for (const [route, markup] of pages) {
+ const ids = cardsFor(markup).map(card => card[1]);
+ const pump = ids.includes('bomba-de-agua-submersa');
+ const scaffold = ids.includes('andaime-fachadeiro');
+ assert.equal((markup.match(/id="equipment-photo-sharpen"/g) || []).length, Number(pump || scaffold));
+ assert.equal(markup.includes('/assets/equipment-preview/bomba-submersa-foto.jpg'), pump);
+ if (pump) assert(markup.includes('esvaziar fundações alagadas após as chuvas'));
+}
 assert(!equipmentHtml.includes('Roll linha de vida'));
 assert(!html.includes('id="galeria"') === (c.gallery.length === 0));
 assert.equal(equipmentHtml.includes('id="venda-de-andaimes"'), c.equipment.some(e => e.id === 'venda-de-andaimes' && e.enabled));

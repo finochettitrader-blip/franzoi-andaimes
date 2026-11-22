@@ -183,14 +183,15 @@
       "id": "bomba-de-agua-submersa",
       "name": "Bomba de água submersa",
       "mobileOrder": 11,
-      "description": "Consulte a disponibilidade de bomba de água submersa para locação.",
+      "description": "Indicada para esvaziar fundações alagadas após as chuvas, auxiliar na manutenção de piscinas e drenar água limpa ou com lodo, conforme as condições de uso do equipamento.",
       "category": "maquinas-equipamentos",
       "message": "Olá! Acessei o site da Franzoi Andaimes e gostaria de consultar a disponibilidade de Bomba de água submersa para locação.",
       "image": {
-        "src": "assets/equipment-preview/11.png",
+        "src": "assets/equipment-preview/bomba-submersa-foto.jpg",
         "alt": "Bomba de água submersa",
-        "width": 148,
-        "height": 164
+        "width": 490,
+        "height": 866,
+        "sharpen": true
       },
       "enabled": true
     },

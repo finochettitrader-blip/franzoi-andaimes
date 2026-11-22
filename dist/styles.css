@@ -254,5 +254,9 @@ body[data-page="home"] .social-heading h2{font-size:1.6rem}
 
 /* Real fachadeiro photo: hide only the small edge mark, sharpen without altering the asset. */
 .portfolio #andaime-fachadeiro .equipment-media{background:#fff}
-.portfolio #andaime-fachadeiro .equipment-image-filter{position:absolute;width:0;height:0;pointer-events:none}
+.portfolio .equipment-image-filter{position:absolute;width:0;height:0;pointer-events:none}
 .portfolio #andaime-fachadeiro .equipment-photo{clip-path:inset(0 0 1% 1%);filter:url(#equipment-photo-sharpen)}
+
+/* Bomba: moldura branca e nitidez leve, mantendo toda a fotografia. */
+.portfolio #bomba-de-agua-submersa .equipment-media{background:#fff;padding:10px}
+.portfolio #bomba-de-agua-submersa .equipment-photo{filter:url(#equipment-photo-sharpen)}
