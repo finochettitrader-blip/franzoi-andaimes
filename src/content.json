@@ -305,8 +305,13 @@
       "mobileOrder": 15,
       "description": "Estrutura modular para trabalhos em fachadas. Consulte a equipe sobre a configuração adequada para a sua obra.",
       "quoteOnly": true,
-      "textOnly": true,
-      "image": null,
+      "image": {
+        "src": "assets/equipment-preview/andaime-fachadeiro.jpg",
+        "alt": "Andaime fachadeiro com plataforma, guarda-corpos e diagonais",
+        "width": 1079,
+        "height": 1055,
+        "sharpen": true
+      },
       "enabled": true,
       "category": "andaimes-acessorios"
     },

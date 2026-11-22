@@ -55,9 +55,11 @@ for (const [route, markup] of pages) {
  assert.equal((markup.match(/class="equipment-quote-status"/g) || []).length, additions.length);
  for (const [card,id] of additions) {
   assert(card.includes('>Sob consulta</span>'));
-  assert.equal(card.includes('data-text-only="true"'), id === 'andaime-fachadeiro');
-  assert.equal(card.includes('class="equipment-media"'), id !== 'andaime-fachadeiro');
-  assert.equal(card.includes('class="equipment-photo"'), id !== 'andaime-fachadeiro');
+  assert(!card.includes('data-text-only="true"'));
+  assert(card.includes('class="equipment-media"'));
+  assert(card.includes('class="equipment-photo"'));
+  assert.equal(card.includes('id="equipment-photo-sharpen"'), id === 'andaime-fachadeiro');
+  if (id === 'andaime-fachadeiro') assert(card.includes('/assets/equipment-preview/andaime-fachadeiro.jpg'));
   assert(!card.includes('Foto em breve'));
  }
 }
