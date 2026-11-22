@@ -217,10 +217,10 @@
       "category": "andaimes-acessorios",
       "message": "Olá! Acessei o site da Franzoi Andaimes e gostaria de consultar a disponibilidade de Abraçadeira fixa para tubo 48 mm para locação.",
       "image": {
-        "src": "assets/equipment-preview/03.png",
+        "src": "assets/equipment-preview/abracadeira-fixa-tratada.jpg",
         "alt": "Abraçadeira fixa para tubo 48 mm",
-        "width": 154,
-        "height": 150
+        "width": 1015,
+        "height": 1549
       },
       "enabled": true
     },
