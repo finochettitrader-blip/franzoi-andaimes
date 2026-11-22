@@ -270,6 +270,47 @@
       "enabled": true
     },
     {
+      "id": "bases-ajustaveis",
+      "name": "Bases ajustáveis",
+      "mobileOrder": 13,
+      "description": "Permitem ajustar a altura dos pontos de apoio para compensar desníveis na montagem do andaime.",
+      "quoteOnly": true,
+      "image": {
+        "src": "assets/equipment-preview/bases-ajustaveis.jpg",
+        "alt": "Bases ajustáveis para andaime",
+        "width": 1520,
+        "height": 1536
+      },
+      "enabled": true,
+      "category": "andaimes-acessorios"
+    },
+    {
+      "id": "rodizios-para-andaime-tubular",
+      "name": "Rodízios para andaime tubular",
+      "mobileOrder": 14,
+      "description": "Facilitam o deslocamento do andaime tubular. Consulte a equipe sobre os modelos compatíveis com a sua estrutura.",
+      "quoteOnly": true,
+      "image": {
+        "src": "assets/equipment-preview/rodizios-andaime-tubular.jpg",
+        "alt": "Rodízios para andaime tubular",
+        "width": 1458,
+        "height": 1536
+      },
+      "enabled": true,
+      "category": "andaimes-acessorios"
+    },
+    {
+      "id": "andaime-fachadeiro",
+      "name": "Andaime fachadeiro",
+      "mobileOrder": 15,
+      "description": "Estrutura modular para trabalhos em fachadas. Consulte a equipe sobre a configuração adequada para a sua obra.",
+      "quoteOnly": true,
+      "textOnly": true,
+      "image": null,
+      "enabled": true,
+      "category": "andaimes-acessorios"
+    },
+    {
       "id": "venda-de-andaimes",
       "name": "Venda de andaimes",
       "description": "Converse com a equipe sobre as opções de andaimes para venda.",

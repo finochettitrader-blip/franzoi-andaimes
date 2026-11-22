@@ -67,14 +67,14 @@ for(const [directory, isPreview] of [['dist',true],['build',false],['netlify-pre
  assert(markup.includes('<link rel="canonical" href="' + origin + '/equipamentos/">'));
  assert(markup.includes('<meta property="og:url" content="' + origin + '/equipamentos/">'));
  assert.equal(markup.includes('noindex, nofollow, noarchive'),isPreview);
- assert.equal((markup.match(/class="equipment-row"/g)||[]).length,5);
+ assert.equal((markup.match(/class="equipment-row"/g)||[]).length,8);
  const sitemap = await readFile(path.join(root,directory,'sitemap.xml'),'utf8');
  assert(sitemap.includes('<loc>' + origin + '/equipamentos/</loc>'));
 }
 assert.equal(await readFile(path.join(root,'build/equipamentos/index.html'),'utf8'),await readFile(path.join(root,'netlify-dist/equipamentos/index.html'),'utf8'));
 assert.equal(await readFile(path.join(root,'dist/equipamentos/index.html'),'utf8'),await readFile(path.join(root,'netlify-preview/equipamentos/index.html'),'utf8'));
 for (const directory of ['dist','build','netlify-preview','netlify-dist']) {
- for (const [category,count] of [['escoramento',2],['maquinas-equipamentos',4],['seguranca-altura',1],['todos',12]]) {
+ for (const [category,count] of [['escoramento',2],['maquinas-equipamentos',4],['seguranca-altura',1],['todos',15]]) {
   const route = '/equipamentos/' + category + '/';
   const markup = await readFile(path.join(root,directory,route,'index.html'),'utf8');
   assert.equal((markup.match(/class="equipment-row"/g)||[]).length,count);
@@ -82,4 +82,4 @@ for (const directory of ['dist','build','netlify-preview','netlify-dist']) {
   assert((await readFile(path.join(root,directory,'sitemap.xml'),'utf8')).includes('<loc>' + origin + route + '</loc>'));
  }
 }
-console.log('OK: quatro categorias, página de todos os 12 produtos, canonical e sitemap nos quatro pacotes.');
+console.log('OK: quatro categorias, página de todos os 15 produtos, canonical e sitemap nos quatro pacotes.');

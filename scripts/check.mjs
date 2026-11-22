@@ -38,13 +38,28 @@ for (const [route, markup] of pages) {
 assert(!html.includes('class="equipment-row"'), 'A inicial deve permanecer compacta');
 assert(html.includes('Ver todos os equipamentos'));
 assert(html.includes('href="/equipamentos/"'));
+assert(html.includes('href="/equipamentos/todos/">Ver todos os equipamentos'));
 assert(equipmentHtml.includes('href="/"'));
-assert.equal((equipmentHtml.match(/class="equipment-row"/g) || []).length, 12);
+assert.equal((equipmentHtml.match(/class="equipment-row"/g) || []).length, 15);
 assert.equal((equipmentHtml.match(/class="equipment-category-anchor"/g) || []).length, 4);
 for(const group of c.equipmentGroups) assert(equipmentHtml.includes('id="' + group.id + '"'));
 for(const item of c.equipment.filter(e => e.enabled)) {
  assert(c.equipmentGroups.some(group => group.id === item.category));
  assert.equal(equipmentHtml.split('id="' + item.id + '"').length - 1, 1);
+}
+const quoteItems = ['bases-ajustaveis', 'rodizios-para-andaime-tubular', 'andaime-fachadeiro'];
+const cardsFor = markup => [...markup.matchAll(/<article class="equipment-row" id="([^"]+)"[^>]*>[\s\S]*?<\/article>/g)];
+for (const [route, markup] of pages) {
+ const additions = cardsFor(markup).filter(card => quoteItems.includes(card[1]));
+ assert.deepEqual(additions.map(card => card[1]), ['/equipamentos/', '/equipamentos/todos/'].includes(route) ? quoteItems : []);
+ assert.equal((markup.match(/class="equipment-quote-status"/g) || []).length, additions.length);
+ for (const [card,id] of additions) {
+  assert(card.includes('>Sob consulta</span>'));
+  assert.equal(card.includes('data-text-only="true"'), id === 'andaime-fachadeiro');
+  assert.equal(card.includes('class="equipment-media"'), id !== 'andaime-fachadeiro');
+  assert.equal(card.includes('class="equipment-photo"'), id !== 'andaime-fachadeiro');
+  assert(!card.includes('Foto em breve'));
+ }
 }
 assert(!equipmentHtml.includes('Roll linha de vida'));
 assert(!html.includes('id="galeria"') === (c.gallery.length === 0));
