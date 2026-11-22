@@ -232,10 +232,10 @@
       "category": "andaimes-acessorios",
       "message": "Olá! Acessei o site da Franzoi Andaimes e gostaria de consultar a disponibilidade de Abraçadeira giratória para tubo 48 mm para locação.",
       "image": {
-        "src": "assets/equipment-preview/04.png",
+        "src": "assets/equipment-preview/abracadeira-giratoria-tratada.jpg",
         "alt": "Abraçadeira giratória para tubo 48 mm",
-        "width": 209,
-        "height": 146
+        "width": 1094,
+        "height": 1438
       },
       "enabled": true
     },
@@ -276,10 +276,10 @@
       "description": "Permitem ajustar a altura dos pontos de apoio para compensar desníveis na montagem do andaime.",
       "quoteOnly": true,
       "image": {
-        "src": "assets/equipment-preview/bases-ajustaveis.jpg",
+        "src": "assets/equipment-preview/bases-ajustaveis-tratada.jpg",
         "alt": "Bases ajustáveis para andaime",
-        "width": 1520,
-        "height": 1536
+        "width": 1239,
+        "height": 1269
       },
       "enabled": true,
       "category": "andaimes-acessorios"
@@ -291,10 +291,10 @@
       "description": "Facilitam o deslocamento do andaime tubular. Consulte a equipe sobre os modelos compatíveis com a sua estrutura.",
       "quoteOnly": true,
       "image": {
-        "src": "assets/equipment-preview/rodizios-andaime-tubular.jpg",
+        "src": "assets/equipment-preview/rodizios-andaime-tubular-tratada.jpg",
         "alt": "Rodízios para andaime tubular",
-        "width": 1458,
-        "height": 1536
+        "width": 1222,
+        "height": 1287
       },
       "enabled": true,
       "category": "andaimes-acessorios"
