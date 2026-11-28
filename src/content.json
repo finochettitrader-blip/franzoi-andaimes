@@ -196,6 +196,21 @@
       "enabled": true
     },
     {
+      "id": "vibrador-de-concreto-portatil",
+      "name": "Vibrador de concreto portátil",
+      "mobileOrder": 16,
+      "description": "Equipamento de imersão para adensar o concreto fresco, ajudando a remover bolhas de ar durante a concretagem. Consulte a disponibilidade para locação.",
+      "category": "maquinas-equipamentos",
+      "message": "Olá! Acessei o site da Franzoi Andaimes e gostaria de consultar a disponibilidade de vibrador de concreto portátil para locação.",
+      "image": {
+        "src": "assets/equipment-preview/vibrador-de-concreto-portatil.jpg",
+        "alt": "Vibrador de concreto portátil laranja com mangote flexível",
+        "width": 1200,
+        "height": 900
+      },
+      "enabled": true
+    },
+    {
       "id": "tubo-roll-48-mm",
       "name": "Tubo Roll 48 mm",
       "mobileOrder": 2,

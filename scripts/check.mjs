@@ -40,7 +40,7 @@ assert(html.includes('Ver todos os equipamentos'));
 assert(html.includes('href="/equipamentos/"'));
 assert(html.includes('href="/equipamentos/todos/">Ver todos os equipamentos'));
 assert(equipmentHtml.includes('href="/"'));
-assert.equal((equipmentHtml.match(/class="equipment-row"/g) || []).length, 15);
+assert.equal((equipmentHtml.match(/class="equipment-row"/g) || []).length, 16);
 assert.equal((equipmentHtml.match(/class="equipment-category-anchor"/g) || []).length, 4);
 for(const group of c.equipmentGroups) assert(equipmentHtml.includes('id="' + group.id + '"'));
 for(const item of c.equipment.filter(e => e.enabled)) {
@@ -119,3 +119,17 @@ for (const [route,markup] of pages) {
  if(group&&validPhone(c.whatsapp)) assert(target.searchParams.get('text').includes(group.name));
 }
 console.log('OK: uma barra de consulta por página, sem botões individuais, WhatsApp por categoria.');
+
+const vibratorId = 'vibrador-de-concreto-portatil';
+const vibrator = c.equipment.find(item => item.id === vibratorId);
+assert.equal(vibrator?.name, 'Vibrador de concreto portátil');
+assert.equal(vibrator?.category, 'maquinas-equipamentos');
+for (const [route, markup] of pages) {
+ const vibratorCards = cardsFor(markup).filter(card => card[1] === vibratorId);
+ const expected = ['/equipamentos/todos/', '/equipamentos/maquinas-equipamentos/'].includes(route);
+ assert.equal(vibratorCards.length, Number(expected));
+ if (expected) {
+  assert(vibratorCards[0][0].includes('src="/' + vibrator.image.src + '"'));
+  assert(vibratorCards[0][0].includes('alt="' + vibrator.image.alt + '"'));
+ }
+}
